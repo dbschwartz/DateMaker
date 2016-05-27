@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var queries = require("../../../queries");
 var knex = require('../../../db/knex.js');
+var request = require('request');
 var yelp = require("node-yelp");
 var client = yelp.createClient({
   oauth: {
@@ -29,20 +29,46 @@ router.get('/', function(req, res, next) {
   
 
 router.get('/getcoordinates', function(req, res, next) {
-  var address1 = req.body.address1
-  var address2 = req.body.address2;
-
-
-  queries.getMeals().then(function(meals){
-    res.status(200).json({
-      status: 'success',
-      data: meals
-    });
-  })
-  .catch(function(err){
-    next(err);
+ 
+  var address1 = req.body.address1.split(' ').join('+');
+  var address2 = req.body.address2.split(' ').join('+');
+  var p1=request({
+    url: 'https://maps.googleapis.com/maps/api/geocode/json',
+    qs: {address: address1, key: process.env.GMAPS_KEY},
+    method: 'GET'
+  },   function(error, response, body){
+    if(error) {
+        console.log(error);
+    } else {
+        console.log(response.statusCode, body);
+    }
   });
-});
+
+  var p2= request({
+    url: 'https://maps.googleapis.com/maps/api/geocode/json',
+    qs: {address: address2, key: process.env.GMAPS_KEY},
+    method: 'GET'
+  },   function(error, response, body){
+    if(error) {
+        console.log(error);
+    } else {
+        console.log(response.statusCode, body);
+    }
+  });
+
+  Promise.all([p1,p2])
+    .then(function(coordinates)){
+     res.status(200).json({
+      status: 'success',
+      data: coordinates
+      });
+    })
+    .catch(function(err){
+      next(err);
+    });
+}
+
+
 
 
 module.exports = router;
