@@ -1,0 +1,1 @@
+var app = angular.module('dateMaker', ['ngAnimate', 'ngTouch', 'ui.bootstrap', 'ngRoute']);

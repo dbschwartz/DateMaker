@@ -12,23 +12,23 @@ var client = yelp.createClient({
   }
 });
 
-client.search({
-  term: "coffee",
-  ll: "39.69886992816584,-104.9523758212663"
-  }).
-    then(function (data) {
-      console.log(data);
-    })
-    .catch(function (err) {
-        console.log(err);
-    });
+// client.search({
+//   term: "coffee",
+//   ll: "39.69886992816584,-104.9523758212663"
+//   }).
+//     then(function (data) {
+//       console.log(data);
+//     })
+//     .catch(function (err) {
+//         console.log(err);
+//     });
 
 router.get('/', function(req, res, next) {
   res.sendFile('/index.html');
 });
   
 
-router.get('/getcoordinates', function(req, res, next) {
+router.post('/getcoordinates', function(req, res, next) {
  
   var address1 = req.body.address1.split(' ').join('+');
   var address2 = req.body.address2.split(' ').join('+');
@@ -57,7 +57,8 @@ router.get('/getcoordinates', function(req, res, next) {
   });
 
   Promise.all([p1,p2])
-    .then(function(coordinates)){
+    .then(function(coordinates){
+      console.log(coordinates);
      res.status(200).json({
       status: 'success',
       data: coordinates
@@ -66,7 +67,7 @@ router.get('/getcoordinates', function(req, res, next) {
     .catch(function(err){
       next(err);
     });
-}
+});
 
 
 

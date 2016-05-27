@@ -1,0 +1,15 @@
+<h1>Enter Addresses to find coordinates</h1>
+
+  <form name="coordinatesForm" ng-submit="getCoordinates(addresses)">
+    <fieldset class="form-group">
+      <strong>Addresss 1:</strong>
+      <input ng-model="addresses.address1" type="text" class="form-control" title="address1">
+    </fieldset>
+    <fieldset class="form-group">
+      <strong>Address 2:</strong>
+      <input ng-model="addresses.address2" type="text" class="form-control" title="address2">
+    </fieldset>
+    <br>
+    <input type="submit" class="btn btn-primary pull-left" value="Get Coordinates">
+  <form>
+
