@@ -15,6 +15,7 @@ function mainCtrl($scope, apiService) {
     .catch(function(err){
       console.log(err);
     });
+    this.addresses =[];
   };
 }
 
