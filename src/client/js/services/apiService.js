@@ -14,7 +14,6 @@ function apiService($http) {
 
   return {
 
-
     getCoordinates: function(addresses){
       return $http.post('/getcoordinates', addresses)
         .then(function(res){

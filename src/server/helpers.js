@@ -1,15 +1,13 @@
 
 
-
-var yelp = require("node-yelp");
-var client = yelp.createClient({
-  oauth: {
+var merge = require('merge');
+var yelp = require("node-yelp-api");
+var options = {
     "consumer_key": process.env.CONSUMER_KEY,
     "consumer_secret": process.env.CONSUMER_SECRET,
     "token": process.env.TOKEN,
     "token_secret": process.env.TOKEN_SECRET
-  }
-});
+};
 
 
 function rad2degr(rad) { return rad * 180 / Math.PI; }
@@ -23,7 +21,6 @@ function degr2rad(degr) { return degr * Math.PI / 180; }
  * @return array with the center latitude longtitude pairs in 
  *   degrees.
  */
-
 
 
 module.exports = {
@@ -53,9 +50,19 @@ module.exports = {
     var hyp = Math.sqrt(avgX * avgX + avgY * avgY);
     var lat = Math.atan2(avgZ, hyp);
     console.log([rad2degr(lat), rad2degr(lng)]);
-    return ([rad2degr(lat), rad2degr(lng)]);
+    return ([rad2degr(lat), rad2degr(lng)]);  
+//   },
+//   searchYelp: function(coordinates, searchTerm){
+//    console.log('searchYelp searchTerm', searchTerm);
+//    console.log('serachYelp coordinates', coordinates);
+//     var parameters = {
+//         term: searchTerm,
+//         ll: coordinates
+//     }
+//     return yelp.search(merge(options, parameters), function(error, response, body){
+//         return callback(error, response, body);
+//     })
+   
+ }
 }
-
-};
-
 

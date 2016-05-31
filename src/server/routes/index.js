@@ -4,7 +4,7 @@ var knex = require('../../../db/knex.js');
 var request = require('request');
 var axios = require('axios')  
 var helpers = require("../helpers");
-
+var yelp = require("../yelp");
 
 // client.search({
 //   term: "coffee",
@@ -42,16 +42,24 @@ router.post('/getcoordinates', function(req, res, next) {
         axios.spread(function(address1, address2) {
         var addresses = [[address1.data.results[0].geometry.location.lat, address1.data.results[0].geometry.location.lng],
                          [address2.data.results[0].geometry.location.lat, address2.data.results[0].geometry.location.lng]];
-        helpers.getLatLngCenter(addresses)                 
-        return res.status(200).json({
-         status: 'success',
-         data: addresses
-         });
-      }))
-      .catch(function(err){
-      next(err);
-    });
-});
+        var midway = helpers.getLatLngCenter(addresses);
+        var midway = midway.join();
+        console.log('midway', midway);
+        console.log('term', req.body.term);
+        yelp.request.yelp({term:req.body.term,
+                           ll: midway})
+          .then(function(yelpList){
+            console.log('list', yelpList)               
+              return res.status(200).json({
+               status: 'success',
+               data: yelpList
+              });
+          })
+          .catch(function(err){
+            next(err);
+          });
+        }))
+})
 
   // var p1=request({
   //   url: 'https://maps.googleapis.com/maps/api/geocode/json',
