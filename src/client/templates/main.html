@@ -25,9 +25,20 @@
     </form>
     </div>
     <div ng-show="yelpList" class="col-xs-6">
-       <ui-gmap-google-map ng-show="yelpList" center="map.center" zoom="map.zoom" control="map.control"></ui-gmap-google-map>
+       <ui-gmap-google-map ng-show="yelpList" center="map.center" zoom="map.zoom" control="map.control">
+     <!--    <ui-gmap-marker
+        idKey='{id: 1}'
+        coords='{latitude:yelpList.midpoint.latitude, longitude:yelpList.midpoint.longitude}'
+        options='marker'
+        > -->
+        <ui-gmap-markers
+            models='markers'
+            coords="'coords'"
+            options="'options'">
+        </ui-gmap-markers>
+     </ui-gmap-google-map>
     </div>
-    
+   
 
   </div>
 

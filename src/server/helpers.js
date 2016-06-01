@@ -1,5 +1,4 @@
 
-
 var merge = require('merge');
 var yelp = require("node-yelp-api");
 var options = {

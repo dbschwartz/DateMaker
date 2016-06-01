@@ -43,16 +43,24 @@ router.post('/getcoordinates', function(req, res, next) {
         var addresses = [[address1.data.results[0].geometry.location.lat, address1.data.results[0].geometry.location.lng],
                          [address2.data.results[0].geometry.location.lat, address2.data.results[0].geometry.location.lng]];
         var midway = helpers.getLatLngCenter(addresses);
+        var midpoint={latitude: midway[0],
+                      longitude: midway[1]};
         var midway = midway.join();
         console.log('midway', midway);
         console.log('term', req.body.term);
         helpers.searchYelp(midway, req.body.term)
           .then(function(yelpList){
             formattedYelpList = JSON.parse(yelpList);
+           var response={address1: addresses[0],
+                         midpoint: midpoint,
+                         address2: addresses[1],
+                         yelp: formattedYelpList
+
+           };
             console.log('list', formattedYelpList)               
               return res.status(200).json({
                status: 'success',
-               data: formattedYelpList
+               data: response
               });
           })
           .catch(function(err){
