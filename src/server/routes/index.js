@@ -46,13 +46,13 @@ router.post('/getcoordinates', function(req, res, next) {
         var midway = midway.join();
         console.log('midway', midway);
         console.log('term', req.body.term);
-        yelp.request.yelp({term:req.body.term,
-                           ll: midway})
+        helpers.searchYelp(midway, req.body.term)
           .then(function(yelpList){
-            console.log('list', yelpList)               
+            formattedYelpList = JSON.parse(yelpList);
+            console.log('list', formattedYelpList)               
               return res.status(200).json({
                status: 'success',
-               data: yelpList
+               data: formattedYelpList
               });
           })
           .catch(function(err){

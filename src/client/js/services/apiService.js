@@ -14,7 +14,7 @@ function apiService($http) {
 
   return {
 
-    getCoordinates: function(addresses){
+    getYelpList: function(addresses){
       return $http.post('/getcoordinates', addresses)
         .then(function(res){
           console.log('res',res);

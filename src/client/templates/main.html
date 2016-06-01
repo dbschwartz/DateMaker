@@ -1,20 +1,35 @@
-<h1>Enter Addresses to find coordinates</h1>
+<h1>Enter Addresses to find MidPoint Yelp Listings</h1>
 
-  <form name="coordinatesForm" ng-submit="getCoordinates(addresses)">
-    <fieldset class="form-group">
-      <strong>Addresss 1:</strong>
-      <input ng-model="addresses.address1" type="text" class="form-control" title="address1">
+<!-- 
+  ng-class="{ 'col-xs-12'}: (...) }"
+  ng-class="{ 'col-xs-12'}: !yelpList, ... }" -->
+  <div class="row">
+    <div ng-class="{'col-xs-12': !yelpList, 'col-xs-2': yelpList}">
+    <form name="coordinatesForm" ng-submit="getYelpList(addresses)">
+      <fieldset class="form-group">
+        <strong>Addresss 1:</strong>
+        <input ng-model="addresses.address1" type="text" class="form-control" title="address1">
+      </fieldset>
+      <fieldset class="form-group">
+        <strong>Address 2:</strong>
+        <input ng-model="addresses.address2" type="text" class="form-control" title="address2">
+      </fieldset>
+      <fieldset class="form-group">
+        <strong>Term:</strong>
+        <input ng-model="addresses.term" type="text" class="form-control" title="term">
+    
+      <br>
+      <input type="submit" class="btn btn-primary pull-left" value="Get Coordinates">
     </fieldset>
-    <fieldset class="form-group">
-      <strong>Address 2:</strong>
-      <input ng-model="addresses.address2" type="text" class="form-control" title="address2">
-    </fieldset>
-    <fieldset class="form-group">
-      <strong>Term:</strong>
-      <input ng-model="addresses.term" type="text" class="form-control" title="term">
-  
-    <br>
-    <input type="submit" class="btn btn-primary pull-left" value="Get Coordinates">
-  </fieldset>
-  </form>
+ 
+    </form>
+    </div>
+    <div ng-show="yelpList" class="col-xs-6">
+       <ui-gmap-google-map ng-show="yelpList" center="map.center" zoom="map.zoom" control="map.control"></ui-gmap-google-map>
+    </div>
+    
+
+  </div>
+
+
 

@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+.noYelp{
+  col-xs-12
+}
+
+.angular-google-map-container { 
+  height: 400px; 
+}

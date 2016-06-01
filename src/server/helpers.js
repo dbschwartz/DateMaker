@@ -51,18 +51,27 @@ module.exports = {
     var lat = Math.atan2(avgZ, hyp);
     console.log([rad2degr(lat), rad2degr(lng)]);
     return ([rad2degr(lat), rad2degr(lng)]);  
-//   },
-//   searchYelp: function(coordinates, searchTerm){
-//    console.log('searchYelp searchTerm', searchTerm);
-//    console.log('serachYelp coordinates', coordinates);
-//     var parameters = {
-//         term: searchTerm,
-//         ll: coordinates
-//     }
-//     return yelp.search(merge(options, parameters), function(error, response, body){
-//         return callback(error, response, body);
-//     })
+  },
+  searchYelp: function(coordinates, searchTerm){
+   console.log('searchYelp searchTerm', searchTerm);
+   console.log('serachYelp coordinates', coordinates);
+    var parameters = {
+        term: searchTerm,
+        ll: coordinates
+    }
+    return new Promise(
+        function(resolve, reject) {
+            yelp.search(merge(options, parameters), function(error, response, body) 
+             {
+                console.log(body);
+                resolve(body)
+              }, function (err) {
+                            console.error(err);
+                            reject(err)
+                            });
    
- }
+        }
+    )
+  }
 }
 

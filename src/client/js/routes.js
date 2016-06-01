@@ -12,5 +12,4 @@ function routeConfig($routeProvider){
       controller: 'mainCtrl'
     })
     .otherwise('/');
-
 }
