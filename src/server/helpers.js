@@ -61,8 +61,8 @@ module.exports = {
     return new Promise(
         function(resolve, reject) {
             yelp.search(merge(options, parameters), function(error, response, body) 
-             {
-                console.log(body);
+             {  body = JSON.parse(body);
+                console.log('body',body.businesses);
                 resolve(body)
               }, function (err) {
                             console.error(err);

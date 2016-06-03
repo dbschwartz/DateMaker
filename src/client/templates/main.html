@@ -26,20 +26,35 @@
     </div>
     <div ng-show="yelpList" class="col-xs-6">
        <ui-gmap-google-map ng-show="yelpList" center="map.center" zoom="map.zoom" control="map.control">
-     <!--    <ui-gmap-marker
-        idKey='{id: 1}'
-        coords='{latitude:yelpList.midpoint.latitude, longitude:yelpList.midpoint.longitude}'
-        options='marker'
-        > -->
-        <ui-gmap-markers
-            models='markers'
-            coords="'coords'"
-            options="'options'">
-        </ui-gmap-markers>
+           <ui-gmap-windows
+                      models="yelpList.yelp"
+                      coords="'coords'"
+                      show="'show'"
+                      templateUrl="'templateUrl'"
+                      templateParameter="'templateParameter'"
+                      isIconVisibleOnClick="'isIconVisibleOnClick'"
+                      closeClick="'closeClick'"
+                      ></ui-gmap-windows>
+            <ui-gmap-markers
+                models='yelpList.yelp'
+                coords="'coords'"
+                click="onClick">
+            </ui-gmap-markers>
      </ui-gmap-google-map>
     </div>
+    <div class= "listings" ng-show="yelpList" class="col-xs-4">
+       <uib-accordion close-others="oneAtATime">
+             <uib-accordion-group ng-repeat="item in yelpList.yelp" ng-click="onClick(0,0,item)" heading="Dynamic Body Content">
+                <p>The body of the uib-accordion group grows to fit the contents</p>
+                <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
+                <div ng-repeat="item in items">{{item}}</div>
+            </uib-accordion-group>
+      </uib-accordion>
+    </div>
    
-
+  <!--   <div ng-repeat="item in yelpList.yelp" ng-click="onClick(0,0,item)">
+      <h2>test</h2>
+    </div> -->
   </div>
 
 

@@ -14,3 +14,8 @@ a {
 .angular-google-map-container { 
   height: 400px; 
 }
+
+.listings {
+  overflow-y: auto;
+  height: 50vh;
+}

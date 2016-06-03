@@ -50,14 +50,13 @@ router.post('/getcoordinates', function(req, res, next) {
         console.log('term', req.body.term);
         helpers.searchYelp(midway, req.body.term)
           .then(function(yelpList){
-            formattedYelpList = JSON.parse(yelpList);
+            formattedYelpList=yelpList;
            var response={address1: addresses[0],
                          midpoint: midpoint,
                          address2: addresses[1],
                          yelp: formattedYelpList
 
            };
-            console.log('list', formattedYelpList)               
               return res.status(200).json({
                status: 'success',
                data: response
