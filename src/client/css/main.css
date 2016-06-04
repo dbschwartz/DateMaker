@@ -1,3 +1,25 @@
+@font-face {
+  font-family: 'Squares';
+  src: 
+    url('../templates/fonts/Squares.otf')
+    format('opentype');
+
+}
+
+
+#title-div {
+
+  content: "";
+  display: inline-block;
+  width: 100%;
+}
+ 
+#title {
+  font-family: 'Squares';
+  font-size: 1100%;
+}
+
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -7,15 +29,21 @@ a {
   color: #00B7FF;
 }
 
+
+.half {
+    height: 50vh; 
+}
+
 .noYelp{
   col-xs-12
 }
 
 .angular-google-map-container { 
-  height: 400px; 
+  height: 50vh; 
 }
 
 .listings {
   overflow-y: auto;
   height: 50vh;
 }
+
