@@ -25,6 +25,7 @@ function mainCtrl($scope, apiService, uiGmapGoogleMapApi, uiGmapIsReady) {
           item.show = false;
         }
       });
+
    }
 
     $scope.getYelpList= function(reqbody){
@@ -32,7 +33,6 @@ function mainCtrl($scope, apiService, uiGmapGoogleMapApi, uiGmapIsReady) {
       .then(function(yelpList){
         yelpList=yelpList.data.data;
         var tempList=[];
-        console.log('yelpList1st', yelpList);
         yelpListings = yelpList.yelp.businesses;
         yelpListings.forEach(function(element){
           var obj = {};
@@ -47,6 +47,8 @@ function mainCtrl($scope, apiService, uiGmapGoogleMapApi, uiGmapIsReady) {
           obj.templateParameter.snippet_text = element.snippet_text;
           obj.templateParameter.address = element.location.display_address.join();
           obj.templateParameter.display_phone = element.display_phone;
+          obj.templateParameter.snippet_image_url = element.image_url;
+          obj.templateParameter.url = element.url;
           obj.templateUrl = '../templates/infowindow.html';
           obj.show = false;
           obj.isIconVisibleOnClick = true;
@@ -59,8 +61,8 @@ function mainCtrl($scope, apiService, uiGmapGoogleMapApi, uiGmapIsReady) {
 
         //console.log('yelpList', $scope.yelpList);
         center = {
-          lat: parseFloat ($scope.yelpList.midpoint.latitude),
-          long: parseFloat  ($scope.yelpList.midpoint.longitude)
+          lat: parseFloat ($scope.yelpList.waypoints[1].coords.latitude),
+          long: parseFloat  ($scope.yelpList.waypoints[1].coords.longitude)
         }
         console.log('center',center)
         $scope.map = {

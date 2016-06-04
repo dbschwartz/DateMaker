@@ -46,14 +46,61 @@ router.post('/getcoordinates', function(req, res, next) {
         var midpoint={latitude: midway[0],
                       longitude: midway[1]};
         var midway = midway.join();
-        console.log('midway', midway);
-        console.log('term', req.body.term);
+        console.log(midway);
+        var waypoints = [
+           {
+            id: "address1",
+            coords: {
+              latitude: addresses[0][0],
+              longitude: addresses[0][1]
+            },
+            icon: "../templates/images/blue-dot.png",
+            templateUrl: "../templates/waypointsinfowindow.html",
+            templateParameter: {
+              address: req.body.address1,
+              name: "address1"
+            },
+            show: false,
+            isIconVisibleOnClick: true,
+            closeClick: function(){}
+          },
+           {
+            id: 'midpoint',
+            coords: {
+              latitude: midpoint.latitude,
+              longitude: midpoint.longitude
+            },
+            icon: "../templates/images/green-dot.png",
+            templateUrl: "../templates/waypointsinfowindow.html",
+            templateParameter: {
+              name: "midpoint"
+            },
+            show: false,
+            isIconVisibleOnClick: true,
+            closeClick: function(){}
+          },
+           {
+            id: 'address2',
+            coords: {
+              latitude: addresses[1][0],
+              longitude: addresses[1][1]
+            },
+            icon: "../templates/images/blue-dot.png",
+            templateUrl: "../templates/waypointsinfowindow.html",
+            templateParameter: {
+              address: req.body.address2,
+              name: "address2"
+            },
+            show: false,
+            isIconVisibleOnClick: true,
+            closeClick: function(){}
+          }
+        ];
+
         helpers.searchYelp(midway, req.body.term)
           .then(function(yelpList){
             formattedYelpList=yelpList;
-           var response={address1: addresses[0],
-                         midpoint: midpoint,
-                         address2: addresses[1],
+           var response={waypoints: waypoints,
                          yelp: formattedYelpList
 
            };
