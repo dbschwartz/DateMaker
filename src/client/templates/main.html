@@ -1,16 +1,25 @@
 
 
 
+<div id ="title-div" class="row">
+<div class="col-xs-12">
+<h3 id="title" class="text-center">DateMaker</h3>
+</div>
+</div>
 
-
-
-<h1>Enter Addresses to find MidPoint Yelp Listings</h1>
+<h3 ng-show="!yelpList">Enter Addresses to find MidPoint Yelp Listings</h3>
 
 <!-- 
   ng-class="{ 'col-xs-12'}: (...) }"
   ng-class="{ 'col-xs-12'}: !yelpList, ... }" -->
   <div class="row">
-    <div ng-class="{'col-xs-12': !yelpList, 'col-xs-2': yelpList}">
+      <div class="panel panel-primary">
+     
+    
+    </div>
+    <div ng-class="{'col-xs-12': !yelpList, 'col-xs-2': yelpList, 'half': yelpList}" class = "panel panel-primary">
+     <div class="panel-heading"><span ng-show="yelpList">Enter Addresses to find MidPoint Yelp Listings</span></div>
+    <div class="panel-body">
     <form name="coordinatesForm" ng-submit="getYelpList(addresses)">
       <fieldset class="form-group">
         <strong>Addresss 1:</strong>
@@ -30,6 +39,7 @@
  
     </form>
     </div>
+  </div>
     <div ng-show="yelpList" class="col-xs-6">
        <ui-gmap-google-map ng-show="yelpList" center="map.center" zoom="map.zoom" control="map.control">
            <ui-gmap-windows
@@ -68,9 +78,27 @@
 
      </ui-gmap-google-map>
     </div>
+
+      <script type="text/ng-template" id="group-template.html">
+        <div class="panel {{'panel-primary' || 'panel-default'}}">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
+                <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
+                  {{heading}}
+                </span>
+              </a>
+            </h4>
+          </div>
+          <div class="panel-collapse collapse" uib-collapse="!isOpen">
+            <div class="panel-body" style="text-align: center" ng-transclude></div>
+          </div>
+        </div>
+      </script>
+
     <div class= "listings" ng-show="yelpList" class="col-xs-4">
        <uib-accordion close-others="true">
-             <uib-accordion-group ng-repeat="item in yelpList.yelp" ng-click="onClick(0,0,item)" heading='{{item.templateParameter.name}}' id = '{{item.id}}'>
+             <uib-accordion-group ng-repeat="item in yelpList.yelp" ng-click="onClick(0,0,item)" heading='{{item.templateParameter.name}}' id = '{{item.id}}' template-url="group-template.html">
                     <div>
                       <p><img ng-src="{{item.templateParameter.snippet_image_url}}" alt="image"></p>
                       <p>{{item.templateParameter.snippet_text}}</p>
