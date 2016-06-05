@@ -40,8 +40,15 @@
     </form>
     </div>
   </div>
+
+
     <div ng-show="yelpList" class="col-xs-6">
        <ui-gmap-google-map ng-show="yelpList" center="map.center" zoom="map.zoom" control="map.control">
+        <ui-gmap-map-control
+            template="./templates/legend.html"
+            position='LEFT_BOTTOM'>
+        </ui-gmap-map-control>
+
            <ui-gmap-windows
                       models="yelpList.yelp"
                       coords="'coords'"
@@ -50,15 +57,15 @@
                       templateParameter="'templateParameter'"
                       isIconVisibleOnClick="'isIconVisibleOnClick'"
                       closeClick="'closeClick'"
-                      doRebuildAll="true"
-                      ></ui-gmap-windows>
+                      doRebuildAll="true">
+            </ui-gmap-windows>
             <ui-gmap-markers
-                models='yelpList.yelp'
-                coords="'coords'"
-                click="onClick"
-                doRebuildAll="true">
+                      models='yelpList.yelp'
+                      coords="'coords'"
+                      click="onClick"
+                      doRebuildAll="true">
             </ui-gmap-markers>
-          <ui-gmap-windows
+            <ui-gmap-windows
                       models="yelpList.waypoints"
                       coords="'coords'"
                       show="'show'"
@@ -69,13 +76,13 @@
                       doRebuildAll="true"
                       ></ui-gmap-windows>
             <ui-gmap-markers
-                models='yelpList.waypoints'
-                coords="'coords'"
-                icon= "'icon'"
-                click="onClick"
-                doRebuildAll="true">
+                      models='yelpList.waypoints'
+                      coords="'coords'"
+                      icon= "'icon'"
+                      options="'options'"
+                      click="onClick"
+                      doRebuildAll="true">
             </ui-gmap-markers>
-
      </ui-gmap-google-map>
     </div>
 

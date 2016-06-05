@@ -61,6 +61,13 @@ router.post('/getcoordinates', function(req, res, next) {
               name: "address1"
             },
             show: false,
+            options: {
+                      label: {
+                            color:"black",
+                            fontFamily:"Arial, Helvetica, sans-serif",
+                            fontSize:"12px",
+                            text: "1"}
+            },
             isIconVisibleOnClick: true,
             closeClick: function(){}
           },
@@ -76,6 +83,13 @@ router.post('/getcoordinates', function(req, res, next) {
               name: "midpoint"
             },
             show: false,
+            options:{
+                      label: {
+                            color:"black",
+                            fontFamily:"Arial, Helvetica, sans-serif",
+                            fontSize:"12px",
+                            text: "M"}
+            },
             isIconVisibleOnClick: true,
             closeClick: function(){}
           },
@@ -92,6 +106,13 @@ router.post('/getcoordinates', function(req, res, next) {
               name: "address2"
             },
             show: false,
+            options: {
+                        label: {
+                            color:"black",
+                            fontFamily:"Arial, Helvetica, sans-serif",
+                            fontSize:"12px",
+                            text: "2"}
+            },
             isIconVisibleOnClick: true,
             closeClick: function(){}
           }
