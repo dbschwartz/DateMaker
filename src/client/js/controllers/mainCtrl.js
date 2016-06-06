@@ -13,24 +13,23 @@ function mainCtrl($scope, apiService, uiGmapGoogleMapApi, uiGmapIsReady, $locati
 
    $scope.onClick = function(marker, eventName, model){
 
-      // console.log('marker', marker);
-      // console.log('eventName', eventName);
-      // console.log('model', model);
+      
       model.show = !model.show;
-      function test(){
-      var listingsContainer = angular.element(document.getElementById('listings-table'));
-      var listingsElement = angular.element(document.getElementById(model.id).previousElementSibling);
-
-      listingsContainer.scrollToElementAnimated(listingsElement,100).then(function(){
-        console.log('test');
-      }) 
+      function scroll(){
+        var listingsContainer = angular.element(document.getElementById('listings-table'));
+        listingsElement = angular.element(document.getElementById(model.id));
+        
+        console.log('listingsElement', listingsElement)
+        listingsContainer.scrollToElementAnimated(listingsElement,100).then(function(){
+          console.log('test');
+        });   
       }
-      var pointer;
+
       
        //var cool2 = angular.element(document.getElementById(thing).previousSibling);
       $scope.yelpList.yelp.forEach(function(item, index){
         if(model.id===item.id){
-          pointer = item.id;
+          //pointer = item.id;
           console.log(item.id)
           
           item.open = open;
@@ -40,7 +39,7 @@ function mainCtrl($scope, apiService, uiGmapGoogleMapApi, uiGmapIsReady, $locati
         }
       });
 
-      $timeout(test, 250)
+      $timeout(scroll, 500)
 
       
      
