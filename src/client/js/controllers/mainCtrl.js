@@ -2,30 +2,48 @@
 angular.module('dateMaker')
   .controller('mainCtrl', mainCtrl);
 
-mainCtrl.$inject = ['$scope', 'apiService', 'uiGmapGoogleMapApi', 'uiGmapIsReady'];
+mainCtrl.$inject = ['$scope', 'apiService', 'uiGmapGoogleMapApi', 'uiGmapIsReady', '$location', '$anchorScroll', '$document', '$timeout'];
 
-function mainCtrl($scope, apiService, uiGmapGoogleMapApi, uiGmapIsReady) {
+function mainCtrl($scope, apiService, uiGmapGoogleMapApi, uiGmapIsReady, $location, $anchorScroll, $document, $timeout) {
   
-   // $scope.map = {
-   //      center : {
-   //          latitude: 37.7749295, 
-   //          longitude: -122.4194155 
-   //      },
-   //      zoom : 14,
-   //      control : {}
-   //  };
+     
+
+
+
+
    $scope.onClick = function(marker, eventName, model){
 
       // console.log('marker', marker);
       // console.log('eventName', eventName);
       // console.log('model', model);
       model.show = !model.show;
-      $scope.yelpList.yelp.forEach(function(item){
+      function test(){
+      var cool = angular.element(document.getElementById('listings-table'));
+      var thing = angular.element(document.getElementById(model.id).previousElementSibling);
+      console.log(thing)
+      cool.scrollToElementAnimated(thing,100).then(function(){
+        console.log('test');
+      }) 
+      }
+      var pointer;
+      
+       //var cool2 = angular.element(document.getElementById(thing).previousSibling);
+      $scope.yelpList.yelp.forEach(function(item, index){
+        if(model.id===item.id){
+          pointer = item.id;
+          console.log(item.id)
+          
+          item.open = open;
+        }
         if(model.id!=item.id && item.show){
           item.show = false;
         }
       });
 
+      $timeout(test, 500)
+
+      
+     
    }
 
     $scope.getYelpList= function(reqbody){
@@ -51,6 +69,7 @@ function mainCtrl($scope, apiService, uiGmapGoogleMapApi, uiGmapIsReady) {
           obj.templateParameter.url = element.url;
           obj.templateUrl = '../templates/infowindow.html';
           obj.show = false;
+          obj.open = false;
           obj.isIconVisibleOnClick = true;
           obj.closeClick = function(){};
           tempList.push(obj);
@@ -98,4 +117,6 @@ function mainCtrl($scope, apiService, uiGmapGoogleMapApi, uiGmapIsReady) {
     
  
   }
+
+
 };

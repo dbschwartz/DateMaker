@@ -103,9 +103,9 @@
         </div>
       </script>
 
-    <div class= "listings" ng-show="yelpList" class="col-xs-4">
+    <div class="listings" id="listings-table" ng-show="yelpList" class="col-xs-4">
        <uib-accordion close-others="true">
-             <uib-accordion-group ng-repeat="item in yelpList.yelp" ng-click="onClick(0,0,item)" heading='{{item.templateParameter.name}}' id = '{{item.id}}' template-url="group-template.html">
+             <uib-accordion-group ng-repeat="item in yelpList.yelp" ng-click="onClick(0,0,item)" heading='{{item.templateParameter.name}}' id = '{{item.id}}' template-url="group-template.html" is-open="item.open">
                     <div>
                       <p><img ng-src="{{item.templateParameter.snippet_image_url}}" alt="image"></p>
                       <p>{{item.templateParameter.snippet_text}}</p>
