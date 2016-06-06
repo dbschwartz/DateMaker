@@ -23,15 +23,15 @@
     <form name="coordinatesForm" ng-submit="getYelpList(addresses)">
       <fieldset class="form-group">
         <strong>Addresss 1:</strong>
-        <input ng-model="addresses.address1" type="text" class="form-control" title="address1">
+        <input ng-model="addresses.address1" type="text" class="form-control" title="address1" placeholder="Type in an address in one line: eg. 123 Any St., Denver,CO 80204 or just the city, e.g. Denver, CO">
       </fieldset>
       <fieldset class="form-group">
         <strong>Address 2:</strong>
-        <input ng-model="addresses.address2" type="text" class="form-control" title="address2">
+        <input ng-model="addresses.address2" type="text" class="form-control" title="address2" placeholder="Type in an address in one line: eg. 123 Any St., Denver,CO 80204 or just the city, e.g. Denver, CO">
       </fieldset>
       <fieldset class="form-group">
         <strong>Term:</strong>
-        <input ng-model="addresses.term" type="text" class="form-control" title="term">
+        <input ng-model="addresses.term" type="text" class="form-control" title="term" placeholder="Type in the type of places you would like to search for.  E.g., bar, coffee, etc.">
     
       <br>
       <input type="submit" class="btn btn-primary pull-left" value="Get Coordinates">
@@ -108,7 +108,7 @@
              <uib-accordion-group ng-repeat="item in yelpList.yelp" ng-click="onClick(0,0,item)" heading='{{item.templateParameter.name}}' id = '{{item.id}}' template-url="group-template.html" is-open="item.open">
                     <div>
                       <p><img ng-src="{{item.templateParameter.snippet_image_url}}" alt="image"></p>
-                      <p>{{item.templateParameter.snippet_text}}</p>
+                      <p>Snippet:{{item.templateParameter.snippet_text}}</p>
                     </div>
                 <div ng-repeat="item in items">{{item}}</div>
             </uib-accordion-group>

@@ -18,10 +18,10 @@ function mainCtrl($scope, apiService, uiGmapGoogleMapApi, uiGmapIsReady, $locati
       // console.log('model', model);
       model.show = !model.show;
       function test(){
-      var cool = angular.element(document.getElementById('listings-table'));
-      var thing = angular.element(document.getElementById(model.id).previousElementSibling);
-      console.log(thing)
-      cool.scrollToElementAnimated(thing,100).then(function(){
+      var listingsContainer = angular.element(document.getElementById('listings-table'));
+      var listingsElement = angular.element(document.getElementById(model.id).previousElementSibling);
+
+      listingsContainer.scrollToElementAnimated(listingsElement,100).then(function(){
         console.log('test');
       }) 
       }
@@ -40,7 +40,7 @@ function mainCtrl($scope, apiService, uiGmapGoogleMapApi, uiGmapIsReady, $locati
         }
       });
 
-      $timeout(test, 500)
+      $timeout(test, 250)
 
       
      
@@ -89,7 +89,7 @@ function mainCtrl($scope, apiService, uiGmapGoogleMapApi, uiGmapIsReady, $locati
             latitude: center.lat, 
             longitude: center.long 
           },
-          zoom : 9,
+          zoom : 10,
           control : {}
         };      
     //   uiGmapIsReady.promise()
