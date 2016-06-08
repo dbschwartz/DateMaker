@@ -6,9 +6,11 @@ An application that helps people find a good location to meet halfway between tw
 ## Installation
 
 Fork and Clone From GitHub
-```Command Line
-```npm install 
-```gulp
+```
+Command Line
+npm install 
+gulp
+```
 
 
 ## Live Demo
