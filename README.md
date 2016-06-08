@@ -14,7 +14,7 @@ gulp
 
 
 ## Live Demo
-[HerkoLink](http://datemaker.herokuapp.com)
+[HerokuLink](http://datemaker.herokuapp.com)
 
 
 ## Built With
