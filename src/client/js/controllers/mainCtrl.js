@@ -2,14 +2,10 @@
 angular.module('dateMaker')
   .controller('mainCtrl', mainCtrl);
 
-mainCtrl.$inject = ['$scope', 'apiService', 'uiGmapGoogleMapApi', 'uiGmapIsReady', '$location', '$anchorScroll', '$document', '$timeout'];
+mainCtrl.$inject = ['$scope', 'apiService', 'uiGmapGoogleMapApi',  '$anchorScroll', '$document', '$timeout'];
 
-function mainCtrl($scope, apiService, uiGmapGoogleMapApi, uiGmapIsReady, $location, $anchorScroll, $document, $timeout) {
+function mainCtrl($scope, apiService, uiGmapGoogleMapApi, $anchorScroll, $document, $timeout) {
   
-     
-
-
-
 
    $scope.onClick = function(marker, eventName, model){
 
@@ -17,21 +13,15 @@ function mainCtrl($scope, apiService, uiGmapGoogleMapApi, uiGmapIsReady, $locati
       model.show = !model.show;
       function scroll(){
         var listingsContainer = angular.element(document.getElementById('listings-table'));
-        listingsElement = angular.element(document.getElementById(model.id));
         
-        console.log('listingsElement', listingsElement)
+        listingsElement = angular.element(document.getElementById(model.id));
         listingsContainer.scrollToElementAnimated(listingsElement,100).then(function(){
-          console.log('test');
         });   
       }
 
       
-       //var cool2 = angular.element(document.getElementById(thing).previousSibling);
       $scope.yelpList.yelp.forEach(function(item, index){
-        if(model.id===item.id){
-          //pointer = item.id;
-          console.log(item.id)
-          
+        if(model.id===item.id){          
           item.open = open;
         }
         if(model.id!=item.id && item.show){
@@ -51,7 +41,7 @@ function mainCtrl($scope, apiService, uiGmapGoogleMapApi, uiGmapIsReady, $locati
         yelpList=yelpList.data.data;
         var tempList=[];
         yelpListings = yelpList.yelp.businesses;
-        yelpListings.forEach(function(element){
+        yelpListings.forEach(function(element){ // object literal or callback function, better name for variable
           var obj = {};
           obj.id = element.id;
           obj.coords = {};
@@ -77,12 +67,11 @@ function mainCtrl($scope, apiService, uiGmapGoogleMapApi, uiGmapIsReady, $locati
         console.log('yelpList', yelpList);
         $scope.yelpList = yelpList;
 
-        //console.log('yelpList', $scope.yelpList);
+     
         center = {
           lat: parseFloat ($scope.yelpList.waypoints[1].coords.latitude),
           long: parseFloat  ($scope.yelpList.waypoints[1].coords.longitude)
         }
-        console.log('center',center)
         $scope.map = {
           center : {
             latitude: center.lat, 
@@ -91,28 +80,13 @@ function mainCtrl($scope, apiService, uiGmapGoogleMapApi, uiGmapIsReady, $locati
           zoom : 10,
           control : {}
         };      
-    //   uiGmapIsReady.promise()
-    // .then(function (map_instances) {
-    //     var map1 = $scope.map.control.getGMap();    // get map object through $scope.map.control getGMap() function
-    //     var map2 = map_instances[0].map;  
-    //     $scope.map = {
-    //     center : {
-    //         latitude: $scope.yelpList.midpoint[0], 
-    //         longitude: $scope.yelpList.midpoint[1] 
-    //     },
-    //     zoom : 14,
-    //     control : {}
-    // };          // get map object through array object returned by uiGmapIsReady promise
-    //     alert('map is now ready');
-    //     if(map1 === map2){
-    //         alert('map1 object is the same as map2 object');
-    //     }
+
 
     }) 
     .catch(function(err){
       console.log(err);
     });
-    // this.addresses =[];
+  
     
  
   }
