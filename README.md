@@ -1,5 +1,9 @@
 # DateMaker
 
+## Live Demo
+[HerokuLink](http://datemaker.herokuapp.com)
+
+
 An application that helps people find a good location to meet halfway between two addresses. DateMaker takes two addresses, calculates its midpoint, and then uses Yelp Data to make suggestions for a venue. Users can additionally rate locations based on atmosphere.
 
 
@@ -11,11 +15,6 @@ Command Line
 npm install 
 gulp
 ```
-
-
-## Live Demo
-[HerokuLink](http://datemaker.herokuapp.com)
-
 
 ## Built With
 
@@ -40,5 +39,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * This application was built for galvanize
-* Inspiration
-* etc
