@@ -1,10 +1,15 @@
 # DateMaker
 
-## Live Demo
-[HerokuLink](http://datemaker.herokuapp.com)
+## View the appplication
+[Deployed Link](http://datemaker.herokuapp.com)
 
 
 An application that helps people find a good location to meet halfway between two addresses. DateMaker takes two addresses, calculates its midpoint, and then uses Yelp Data to make suggestions for a venue. Users can additionally rate locations based on atmosphere.
+
+
+## Screen Capture
+
+![Gif](/gif.gif "Gif")
 
 
 ## Installation
