@@ -1,6 +1,6 @@
 # DateMaker
 
-## View the appplication
+## View the application
 [Deployed Link](http://datemaker.herokuapp.com)
 
 
@@ -9,7 +9,7 @@ An application that helps people find a good location to meet halfway between tw
 
 ## Screen Capture
 
-![Gif](/gif.gif "Gif")
+![Gif](/screencapture.gif "Screen Capture")
 
 
 ## Installation
